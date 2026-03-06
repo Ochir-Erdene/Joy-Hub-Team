@@ -6,16 +6,12 @@ function generateSeats(
   type: SeatType,
   rows: string[],
   seatsPerRow: number,
-  occupiedPercent: number = 0.3
 ): Seat[] {
   const seats: Seat[] = []
   
   rows.forEach((row) => {
     for (let i = 1; i <= seatsPerRow; i++) {
-      const random = Math.random()
       let status: SeatStatus = "available"
-      if (random < occupiedPercent) status = "occupied"
-      else if (random < occupiedPercent + 0.05) status = "maintenance"
       
       seats.push({
         id: `${sectionId}-${row}${i}`,
@@ -47,7 +43,7 @@ function generateFloors(cafeId: string, hasVIP: boolean = true): Floor[] {
           type: "pc",
           description: "High-end gaming PCs with RTX 4080",
           icon: "monitor",
-          seats: generateSeats(`${cafeId}-f1-pc`, "pc", ["A", "B", "C", "D"], 8, 0.35),
+          seats: generateSeats(`${cafeId}-f1-pc`, "pc", ["P"], 20),
         },
         {
           id: `${cafeId}-f1-console`,
@@ -55,29 +51,15 @@ function generateFloors(cafeId: string, hasVIP: boolean = true): Floor[] {
           type: "console",
           description: "Xbox Series X stations",
           icon: "gamepad-2",
-          seats: generateSeats(`${cafeId}-f1-console`, "console", ["X", "Y"], 4, 0.25),
-        },
-      ],
-    },
-    {
-      id: `${cafeId}-f2`,
-      name: "2nd Floor",
-      sections: [
-        {
-          id: `${cafeId}-f2-pc`,
-          name: "Pro Gaming Arena",
-          type: "pc",
-          description: "Tournament-grade PCs with 360Hz monitors",
-          icon: "monitor",
-          seats: generateSeats(`${cafeId}-f2-pc`, "pc", ["E", "F", "G"], 10, 0.4),
+          seats: generateSeats(`${cafeId}-f1-console`, "console", ["X", "Y"], 4),
         },
         {
-          id: `${cafeId}-f2-ps5`,
+          id: `${cafeId}-f1-ps5`,
           name: "PlayStation Lounge",
           type: "ps5",
           description: "PS5 consoles with premium displays",
           icon: "gamepad",
-          seats: generateSeats(`${cafeId}-f2-ps5`, "ps5", ["P", "Q"], 5, 0.3),
+          seats: generateSeats(`${cafeId}-f2-ps5`, "ps5", ["P", "Q"], 5),
         },
       ],
     },
@@ -85,61 +67,61 @@ function generateFloors(cafeId: string, hasVIP: boolean = true): Floor[] {
 
   if (hasVIP) {
     floors.push({
-      id: `${cafeId}-f3`,
-      name: "3rd Floor - VIP",
+      id: `${cafeId}-vip`,
+      name: "VIP",
       sections: [
         {
-          id: `${cafeId}-f3-vip5-1`,
+          id: `${cafeId}-vip-vip5-1`,
           name: "VIP 1 (5-Seat)",
           type: "vip",
           description: "5-Seat Private Room with RTX 4090, streaming setup, mini fridge, private bathroom",
           icon: "crown",
-          seats: generateSeats(`${cafeId}-f3-vip5-1`, "vip", ["V"], 5, 0.2),
+          seats: generateSeats(`${cafeId}-vip-vip5-1`, "vip", ["V"], 5),
           roomCapacity: 5,
         },
         {
-          id: `${cafeId}-f3-vip5-2`,
+          id: `${cafeId}-vip-vip5-2`,
           name: "VIP 2 (5-Seat)",
           type: "vip",
           description: "5-Seat Private Room with RTX 4090, RGB lighting, premium chairs, snack bar",
           icon: "crown",
-          seats: generateSeats(`${cafeId}-f3-vip5-2`, "vip", ["V"], 5, 0.4),
+          seats: generateSeats(`${cafeId}-vip-vip5-2`, "vip", ["V"], 5),
           roomCapacity: 5,
         },
         {
-          id: `${cafeId}-f3-vip10-1`,
+          id: `${cafeId}-vip-vip10-1`,
           name: "VIP 3 (10-Seat)",
           type: "vip",
           description: "10-Seat Party Room with RTX 4090, 4K projector, surround sound, karaoke system",
           icon: "crown",
-          seats: generateSeats(`${cafeId}-f3-vip10-1`, "vip", ["A", "B"], 5, 0.3),
+          seats: generateSeats(`${cafeId}-f3-vip10-1`, "vip", ["A", "B"], 5),
           roomCapacity: 10,
         },
         {
-          id: `${cafeId}-f3-vip10-2`,
+          id: `${cafeId}-vip-vip10-2`,
           name: "VIP 4 (10-Seat)",
           type: "vip",
           description: "10-Seat Tournament Room with RTX 4090, streaming setup, dual 4K displays, team comms",
           icon: "crown",
-          seats: generateSeats(`${cafeId}-f3-vip10-2`, "vip", ["A", "B"], 5, 0.5),
+          seats: generateSeats(`${cafeId}-vip-vip10-2`, "vip", ["A", "B"], 5),
           roomCapacity: 10,
         },
         {
-          id: `${cafeId}-f3-vip-ps`,
+          id: `${cafeId}-vip-vip1-ps`,
           name: "VIP PS5 Suite",
           type: "ps5",
           description: "Private PS5 room with 4K OLED displays and premium seating",
           icon: "gamepad",
-          seats: generateSeats(`${cafeId}-f3-vip-ps`, "ps5", ["PS"], 4, 0.4),
+          seats: generateSeats(`${cafeId}-vip-vip1-ps`, "ps5", ["PS"], 4),
           roomCapacity: 4,
         },
         {
-          id: `${cafeId}-f3-vip-xbox`,
+          id: `${cafeId}-vip-vip1-xbox`,
           name: "VIP Xbox Lounge",
           type: "console",
           description: "Private Xbox Series X room with gaming chairs",
           icon: "gamepad-2",
-          seats: generateSeats(`${cafeId}-f3-vip-xbox`, "console", ["XB"], 4, 0.35),
+          seats: generateSeats(`${cafeId}-vip-vip1-xbox`, "console", ["XB"], 4),
           roomCapacity: 4,
         },
       ],

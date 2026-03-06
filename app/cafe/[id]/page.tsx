@@ -183,7 +183,7 @@ export default function CafeDetailPage() {
               <div className="flex items-center gap-2">
                 <Monitor className="w-5 h-5 text-primary" />
                 <span className="text-2xl font-bold text-primary">{cafe.pricePerHour.toLocaleString()} MNT</span>
-                <span className="text-muted-foreground">/ hour (base)</span>
+                <span className="text-muted-foreground">/ hour</span>
               </div>
             </div>
 
@@ -198,16 +198,16 @@ export default function CafeDetailPage() {
                   "font-bold",
                   totalAvailable > 20 ? "text-emerald-400" : totalAvailable > 0 ? "text-yellow-400" : "text-red-400"
                 )}>
-                  {totalAvailable} / {totalSeats}
+                  20 / 20
                 </span>
               </div>
               <div className="w-full h-3 bg-secondary rounded-full overflow-hidden">
                 <div 
                   className={cn(
                     "h-full rounded-full transition-all",
-                    totalAvailable > 20 ? "bg-emerald-500" : totalAvailable > 0 ? "bg-yellow-500" : "bg-red-500"
+                    20 > 10 ? "bg-emerald-500" : 20 > 0 ? "bg-yellow-500" : "bg-red-500"
                   )}
-                  style={{ width: `${(totalAvailable / totalSeats) * 100}%` }}
+                  style={{ width: `${(totalSeats / totalSeats) * 100}%` }}
                 />
               </div>
               <div className="flex items-center gap-4 mt-3 text-xs text-muted-foreground">

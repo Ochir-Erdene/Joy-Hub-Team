@@ -31,7 +31,7 @@ export function GoogleMap({ cafes, hoveredCafe, onHoverCafe }: GoogleMapProps) {
 
     const mapInstance = new window.google.maps.Map(mapRef.current, {
       center: UB_CENTER,
-      zoom: 13,
+      zoom: 16,
       mapId: "gaming-cafe-map",
       styles: [
         { elementType: "geometry", stylers: [{ color: "#0a0a12" }] },
@@ -77,6 +77,38 @@ export function GoogleMap({ cafes, hoveredCafe, onHoverCafe }: GoogleMapProps) {
       zoomControl: true,
       fullscreenControl: true,
     });
+
+    // 🔵 Хэрэглэгчийн marker
+    const userMarker = new window.google.maps.Marker({
+      position: UB_CENTER,
+      map: mapInstance,
+      title: "Your Location",
+      icon: {
+        path: window.google.maps.SymbolPath.CIRCLE,
+        scale: 8,
+        fillColor: "blue",
+        fillOpacity: 1,
+        strokeColor: "white",
+        strokeWeight: 2,
+      },
+    });
+
+    if (navigator.geolocation) {
+      navigator.geolocation.watchPosition(
+        (position) => {
+          const userPos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          };
+          userMarker.setPosition(userPos);
+          mapInstance.panTo(userPos);
+        },
+        (err) => {
+          console.error("Failed to` get user location:", err);
+        },
+        { enableHighAccuracy: true }
+      );
+    }
 
     mapInstanceRef.current = mapInstance;
     createMarkers(mapInstance);
@@ -258,7 +290,7 @@ export function GoogleMap({ cafes, hoveredCafe, onHoverCafe }: GoogleMapProps) {
 
   // Load Google Maps script
   useEffect(() => {
-    const apiKey = "AIzaSyC7A-0P6Xc-wzZSJhlWHTyqKuncfTIbCGA";
+    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
     if (!apiKey) {
       setError("Google Maps API key is not configured");

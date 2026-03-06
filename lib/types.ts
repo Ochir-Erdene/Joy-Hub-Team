@@ -1,5 +1,5 @@
 export type SeatType = "pc" | "console" | "ps5" | "vip"
-export type SeatStatus = "available" | "occupied" | "selected" | "maintenance"
+export type SeatStatus = "available" | "selected"
 
 export interface Seat {
   id: string

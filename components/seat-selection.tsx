@@ -117,14 +117,6 @@ export function SeatSelection({ section, selectedSeats, onSelectSeat }: SeatSele
           )} />
           <span className="text-muted-foreground">Selected</span>
         </div>
-        <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded bg-red-500/20 border border-red-500/50" />
-          <span className="text-muted-foreground">Occupied</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded bg-gray-500/20 border border-gray-500/50" />
-          <span className="text-muted-foreground">Maintenance</span>
-        </div>
       </div>
 
       {/* Seat grid */}
@@ -134,26 +126,6 @@ export function SeatSelection({ section, selectedSeats, onSelectSeat }: SeatSele
           ? "bg-yellow-500/5 border-yellow-500/20" 
           : "bg-secondary/30 border-border"
       )}>
-        {/* Front label */}
-        <div className="text-center mb-6">
-          <div className={cn(
-            "inline-block px-8 py-2 border rounded-lg",
-            section.type === "pc" && "bg-cyan-500/10 border-cyan-500/30",
-            section.type === "console" && "bg-green-500/10 border-green-500/30",
-            section.type === "ps5" && "bg-blue-500/10 border-blue-500/30",
-            section.type === "vip" && "bg-yellow-500/10 border-yellow-500/30"
-          )}>
-            <span className={cn(
-              "text-xs font-medium",
-              section.type === "pc" && "text-cyan-400",
-              section.type === "console" && "text-green-400",
-              section.type === "ps5" && "text-blue-400",
-              section.type === "vip" && "text-yellow-400"
-            )}>
-              {isVIPRoom ? "VIP ROOM ENTRANCE" : "SECTION ENTRANCE"}
-            </span>
-          </div>
-        </div>
 
         {/* VIP Room capacity indicator */}
         {isVIPRoom && section.roomCapacity && (
@@ -171,15 +143,10 @@ export function SeatSelection({ section, selectedSeats, onSelectSeat }: SeatSele
         <div className="space-y-4">
           {rowKeys.map((rowKey) => (
             <div key={rowKey} className="flex items-center gap-4">
-              <span className="w-16 text-xs text-muted-foreground font-medium">
-                {isVIPRoom ? `Seat` : `Row ${rowKey}`}
-              </span>
               <div className="flex gap-2 flex-wrap justify-center flex-1">
                 {rows[rowKey].map((seat) => {
                   const isSelected = selectedSeats.includes(seat.id)
                   const isAvailable = seat.status === "available"
-                  const isOccupied = seat.status === "occupied"
-                  const isMaintenance = seat.status === "maintenance"
 
                   return (
                     <button
@@ -197,8 +164,6 @@ export function SeatSelection({ section, selectedSeats, onSelectSeat }: SeatSele
                         isSelected && section.type === "ps5" && "bg-blue-500/30 border-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.5)] scale-105",
                         isSelected && section.type === "vip" && "bg-yellow-500/30 border-yellow-500 shadow-[0_0_15px_rgba(234,179,8,0.5)] scale-105",
                         isAvailable && !isSelected && "bg-emerald-500/20 border-emerald-500/50 hover:bg-emerald-500/30 hover:scale-105 cursor-pointer",
-                        isOccupied && "bg-red-500/20 border-red-500/50 cursor-not-allowed",
-                        isMaintenance && "bg-gray-500/20 border-gray-500/50 cursor-not-allowed"
                       )}
                     >
                       <Icon className={cn(
@@ -209,8 +174,6 @@ export function SeatSelection({ section, selectedSeats, onSelectSeat }: SeatSele
                         isSelected && section.type === "ps5" && "text-blue-400",
                         isSelected && section.type === "vip" && "text-yellow-400",
                         isAvailable && !isSelected && "text-emerald-400",
-                        isOccupied && "text-red-400",
-                        isMaintenance && "text-gray-400"
                       )} />
                       <span className={cn(
                         "text-[10px] font-medium mt-0.5",
@@ -219,8 +182,6 @@ export function SeatSelection({ section, selectedSeats, onSelectSeat }: SeatSele
                         isSelected && section.type === "ps5" && "text-blue-400",
                         isSelected && section.type === "vip" && "text-yellow-400",
                         isAvailable && !isSelected && "text-emerald-400",
-                        isOccupied && "text-red-400",
-                        isMaintenance && "text-gray-400"
                       )}>
                         {isVIPRoom ? seat.number : `${seat.row}${seat.number}`}
                       </span>

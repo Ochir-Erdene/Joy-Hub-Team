@@ -290,7 +290,7 @@ export function GoogleMap({ cafes, hoveredCafe, onHoverCafe }: GoogleMapProps) {
 
   // Load Google Maps script
   useEffect(() => {
-    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+    const apiKey = "AIzaSyC7A-0P6Xc-wzZSJhlWHTyqKuncfTIbCGA";
 
     if (!apiKey) {
       setError("Google Maps API key is not configured");

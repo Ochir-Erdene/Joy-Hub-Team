@@ -69,16 +69,16 @@ export function BookingForm({ cafe, selectedSection, selectedSeats, onBookingCom
       )}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="space-y-2">
+        <div className="space-y-2 w-full">
           <Label htmlFor="date" className="text-foreground">Date</Label>
-          <div className="relative">
-            <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+          <div className="relative w-full">
+            <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground" />
             <Input
               id="date"
               type="date"
               value={date}
               onChange={(e) => setDate(e.target.value)}
-              className="pl-10 bg-secondary border-border"
+              className="w-full max-w-[100%] pl-10 bg-secondary border-border"
               required
             />
           </div>
@@ -194,3 +194,4 @@ export function BookingForm({ cafe, selectedSection, selectedSeats, onBookingCom
     </form>
   )
 }
+

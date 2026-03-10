@@ -68,7 +68,7 @@ export function BookingForm({ cafe, selectedSection, selectedSeats, onBookingCom
         </div>
       )}
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-4">
         <div className="space-y-2 w-full">
           <Label htmlFor="date" className="text-foreground">Date</Label>
           <div className="relative w-full">
@@ -84,17 +84,31 @@ export function BookingForm({ cafe, selectedSection, selectedSeats, onBookingCom
           </div>
         </div>
 
-        <div className="space-y-2 w-full">
+        <div className="space-y-2">
           <Label htmlFor="time" className="text-foreground">Start Time</Label>
           <Input
             id="startTime"
             type="time"
             value={startTime}
             onChange={(e) => setStartTime(e.target.value)}
-            className="w-full max-w-[100%] bg-secondary border-border"
+            className="bg-secondary border-border"
             required
           />
+          {/* <div className="relative">
+            <Clock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground z-10" />
+            <Select value={startTime} onValueChange={setStartTime} required>
+              <SelectTrigger className="pl-10 bg-secondary border-border">
+                <SelectValue placeholder="Select time" />
+              </SelectTrigger>
+              <SelectContent>
+                {timeSlots.map((time) => (
+                  <SelectItem key={time} value={time}>{time}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div> */}
         </div>
+
       </div>
 
       <div className="space-y-2">

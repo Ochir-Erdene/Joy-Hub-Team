@@ -68,47 +68,35 @@ export function BookingForm({ cafe, selectedSection, selectedSeats, onBookingCom
         </div>
       )}
 
-      <div className="grid grid-cols-2 gap-4">
-        <div className="space-y-2">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {/* Date */}
+        <div className="space-y-2 w-full">
           <Label htmlFor="date" className="text-foreground">Date</Label>
-          <div className="relative">
-            <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+          <div className="relative w-full">
+            <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground" />
             <Input
               id="date"
               type="date"
               value={date}
               onChange={(e) => setDate(e.target.value)}
-              className="pl-10 bg-secondary border-border"
+              className="w-full max-w-[100%] pl-10 bg-secondary border-border"
               required
             />
           </div>
         </div>
 
-        <div className="space-y-2">
+        {/* Start Time */}
+        <div className="space-y-2 w-full">
           <Label htmlFor="time" className="text-foreground">Start Time</Label>
           <Input
             id="startTime"
             type="time"
             value={startTime}
             onChange={(e) => setStartTime(e.target.value)}
-            className="bg-secondary border-border"
+            className="w-full max-w-[100%] bg-secondary border-border"
             required
           />
-          {/* <div className="relative">
-            <Clock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground z-10" />
-            <Select value={startTime} onValueChange={setStartTime} required>
-              <SelectTrigger className="pl-10 bg-secondary border-border">
-                <SelectValue placeholder="Select time" />
-              </SelectTrigger>
-              <SelectContent>
-                {timeSlots.map((time) => (
-                  <SelectItem key={time} value={time}>{time}</SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div> */}
         </div>
-
       </div>
 
       <div className="space-y-2">
@@ -194,5 +182,3 @@ export function BookingForm({ cafe, selectedSection, selectedSeats, onBookingCom
     </form>
   )
 }
-
-

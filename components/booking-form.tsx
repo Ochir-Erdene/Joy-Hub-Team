@@ -79,7 +79,7 @@ export function BookingForm({ cafe, selectedSection, selectedSeats, onBookingCom
               type="date"
               value={date}
               onChange={(e) => setDate(e.target.value)}
-              className="w-full max-w-[80%] pl-10 bg-secondary border-border"
+              className="w-full max-w-[85%] pl-10 bg-secondary border-border"
               required
             />
           </div>
@@ -93,7 +93,7 @@ export function BookingForm({ cafe, selectedSection, selectedSeats, onBookingCom
             type="time"
             value={startTime}
             onChange={(e) => setStartTime(e.target.value)}
-            className="w-full max-w-[80%] pl-10 bg-secondary border-border"
+            className="w-full max-w-[85%] pl-10 bg-secondary border-border"
             required
           />
         </div>

@@ -78,7 +78,7 @@ export function BookingForm({ cafe, selectedSection, selectedSeats, onBookingCom
               type="date"
               value={date}
               onChange={(e) => setDate(e.target.value)}
-              className="w-full max-w-[100%] pl-10 bg-secondary border-border"
+              className="w-full pl-10 bg-secondary border-border"
               required
             />
           </div>

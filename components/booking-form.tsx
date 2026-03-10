@@ -13,7 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import type { PCCafe, Section, Seat } from "@/lib/types"
+import type { PCCafe, Section } from "@/lib/types"
 
 interface BookingFormProps {
   cafe: PCCafe
@@ -56,14 +56,6 @@ export function BookingForm({ cafe, selectedSection, selectedSeats, onBookingCom
     "20:00", "21:00", "22:00", "23:00", "00:00", "01:00"
   ]
 
-  // Format seat IDs for display (extract the seat number like A1, B2)
-  const formatSeatIds = () => {
-    return selectedSeats.map(id => {
-      const parts = id.split("-")
-      return parts[parts.length - 1]
-    }).join(", ")
-  }
-
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
       {isVIP && (
@@ -94,7 +86,15 @@ export function BookingForm({ cafe, selectedSection, selectedSeats, onBookingCom
 
         <div className="space-y-2">
           <Label htmlFor="time" className="text-foreground">Start Time</Label>
-          <div className="relative">
+          <Input
+            id="startTime"
+            type="time"
+            value={startTime}
+            onChange={(e) => setStartTime(e.target.value)}
+            className="bg-secondary border-border"
+            required
+          />
+          {/* <div className="relative">
             <Clock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground z-10" />
             <Select value={startTime} onValueChange={setStartTime} required>
               <SelectTrigger className="pl-10 bg-secondary border-border">
@@ -106,8 +106,9 @@ export function BookingForm({ cafe, selectedSection, selectedSeats, onBookingCom
                 ))}
               </SelectContent>
             </Select>
-          </div>
+          </div> */}
         </div>
+
       </div>
 
       <div className="space-y-2">
@@ -129,6 +130,7 @@ export function BookingForm({ cafe, selectedSection, selectedSeats, onBookingCom
           <Label htmlFor="name" className="text-foreground">Your Name</Label>
           <Input
             id="name"
+            type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Enter your name"
@@ -142,6 +144,8 @@ export function BookingForm({ cafe, selectedSection, selectedSeats, onBookingCom
           <Input
             id="phone"
             value={phone}
+            type="tel"
+            maxLength={8}
             onChange={(e) => setPhone(e.target.value)}
             placeholder="+976 ..."
             className="bg-secondary border-border"
@@ -159,10 +163,6 @@ export function BookingForm({ cafe, selectedSection, selectedSeats, onBookingCom
           </div>
         )}
         <div className="flex justify-between text-sm">
-          <span className="text-muted-foreground">Selected Seats</span>
-          <span className="text-foreground font-medium">{formatSeatIds() || "None"}</span>
-        </div>
-        <div className="flex justify-between text-sm">
           <span className="text-muted-foreground">Price per hour</span>
           <span className="text-foreground">
             {pricePerSeat.toLocaleString()} MNT
@@ -174,7 +174,7 @@ export function BookingForm({ cafe, selectedSection, selectedSeats, onBookingCom
           <span className="text-foreground">{duration} hour{Number(duration) > 1 ? "s" : ""}</span>
         </div>
         <div className="flex justify-between text-sm">
-          <span className="text-muted-foreground">Seats</span>
+          <span className="text-muted-foreground">Players</span>
           <span className="text-foreground">{selectedSeats.length}</span>
         </div>
         <div className="border-t border-border my-2 pt-2 flex justify-between">

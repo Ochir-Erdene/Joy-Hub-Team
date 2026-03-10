@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Search, SlidersHorizontal, Gamepad2 } from "lucide-react"
+import { Search, MapPin, Gamepad2 } from "lucide-react"
 import type { PCCafe } from "@/lib/types"
 import { CafeCard } from "./cafe-card"
 import { Input } from "@/components/ui/input"
@@ -50,9 +50,9 @@ export function CafeSidebar({ cafes, hoveredCafe, onHoverCafe }: CafeSidebarProp
           <Button
             variant="outline"
             size="icon"
-            className="border-sidebar-border bg-sidebar-accent text-sidebar-foreground hover:bg-sidebar-accent/80"
+            className="border-sidebar-border bg-sidebar-accent text-sidebar-foreground cursor-pointer"
           >
-            <SlidersHorizontal className="w-4 h-4" />
+            <MapPin className="w-3 h-3" />
           </Button>
         </div>
       </div>

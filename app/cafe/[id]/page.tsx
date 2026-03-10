@@ -112,7 +112,7 @@ export default function CafeDetailPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-card/95 backdrop-blur border-b border-border">
+      <header className="sticky top-0 z-50 bg-card/95 backdrop-blur border-b border-primary/20">
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center gap-4">
           <Link href="/">
             <Button variant="ghost" size="icon" className="text-foreground hover:text-primary">
@@ -132,7 +132,7 @@ export default function CafeDetailPage() {
         {/* Hero Section */}
         <div className="grid lg:grid-cols-2 gap-6 mb-8">
           {/* Image */}
-          <div className="relative aspect-video rounded-xl overflow-hidden">
+          <div className="relative aspect-video rounded-xl overflow-hidden border border-primary/20">
             <img
               src={cafe.image || "/placeholder.svg"}
               alt={cafe.name}
@@ -150,12 +150,12 @@ export default function CafeDetailPage() {
                     Closed
                   </span>
                 )}
-                <span className="px-2 py-1 text-xs bg-black/50 text-white rounded">
+                <span className="px-2 py- text-xs bg-black/50 text-white rounded">
                   {cafe.openHours}
                 </span>
               </div>
-              <h1 className="text-3xl font-bold text-white mb-1">{cafe.name}</h1>
-              <div className="flex items-center gap-4 text-white/80 text-sm">
+              <h1 className="text-3xl font-bold text-white mb-2">{cafe.name}</h1>
+              <div className="flex items-center gap-4 text-white/80 text-sm border-t border-white/20 pt-2">
                 <div className="flex items-center gap-1">
                   <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                   <span>{cafe.rating}</span>
@@ -171,7 +171,7 @@ export default function CafeDetailPage() {
 
           {/* Info */}
           <div className="space-y-4">
-            <div className="p-4 rounded-xl bg-card border border-border">
+            <div className="p-4 rounded-xl bg-card border border-primary/20">
               <div className="flex items-center gap-2 mb-3">
                 <MapPin className="w-5 h-5 text-primary" />
                 <span className="text-foreground">{cafe.address}</span>
@@ -188,7 +188,7 @@ export default function CafeDetailPage() {
             </div>
 
             {/* Availability */}
-            <div className="p-4 rounded-xl bg-card border border-border">
+            <div className="p-4 rounded-xl bg-card border border-primary/20">
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-2">
                   <Users className="w-5 h-5 text-primary" />
@@ -217,7 +217,7 @@ export default function CafeDetailPage() {
             </div>
 
             {/* Amenities */}
-            <div className="p-4 rounded-xl bg-card border border-border">
+            <div className="p-4 rounded-xl bg-card border border-primary/20">
               <h3 className="font-medium text-foreground mb-3">Amenities</h3>
               <div className="flex flex-wrap gap-2">
                 {cafe.amenities.map((amenity) => {
@@ -246,7 +246,7 @@ export default function CafeDetailPage() {
         </div>
 
         {/* Floor & Section Selection */}
-        <div className="mb-6 p-6 rounded-xl bg-card border border-border">
+        <div className="mb-6 p-6 rounded-xl bg-card border border-primary/20">
           <h2 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
             <Gamepad2 className="w-5 h-5 text-primary" />
             Choose Floor & Section
@@ -264,7 +264,7 @@ export default function CafeDetailPage() {
         <div className="grid lg:grid-cols-3 gap-6">
           {/* Seat Selection */}
           <div className="lg:col-span-2">
-            <div className="p-6 rounded-xl bg-card border border-border">
+            <div className="p-6 rounded-xl bg-card border border-primary/20">
               <h2 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
                 <Monitor className="w-5 h-5 text-primary" />
                 Select Your Seat
@@ -285,7 +285,7 @@ export default function CafeDetailPage() {
 
           {/* Booking Form */}
           <div className="lg:col-span-1">
-            <div className="sticky top-24 p-6 rounded-xl bg-card border border-border">
+            <div className="sticky top-24 p-6 rounded-xl bg-card border border-primary/20">
               <h2 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
                 <Clock className="w-5 h-5 text-primary" />
                 Book Your Session
